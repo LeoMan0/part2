@@ -1,4 +1,5 @@
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
 # Load your preprocessed data
@@ -11,13 +12,10 @@ y = data.iloc[:, 0]   # Labels (Activity ID)
 seed = 40
 
 # Split into training and (testing + validation)
-#X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.30, random_state=seed, stratify=y)
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.30, random_state=seed, stratify=y)
 #y
 #Split temp into test and validation
-#X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.50, random_state=seed, stratify=y_temp)
-train_size = int(len(data) * 0.7)
-X_train, X_test = data.iloc[:train_size, 1:], data.iloc[train_size:, 1:]
-y_train, y_test = data.iloc[:train_size, 0], data.iloc[train_size:, 0]
+X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.50, random_state=seed, stratify=y_temp)
 
 
 X_train.to_csv('X_train.csv', index = False)
