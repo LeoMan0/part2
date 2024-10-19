@@ -2,17 +2,19 @@ import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from pathlib import Path
 
-# Load your preprocessed data (same as in the training file)
-data = pd.read_csv('preprocessed_data.csv')
 
-# Split the data into features and labels
-X = data.iloc[:, 1:]  # Features (same as training script)
-y = data.iloc[:, 0]   # Labels (same as training script)
+current_dir = Path(__file__).resolve().parent
 
-# Split the data again, ensuring the same split with the same random_state
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Build paths for the data files in the parent directory
+#X_train_path = current_dir.parent / 'X_train.csv'
+#y_train_path = current_dir.parent / 'y_train.csv'
 
+X_test = pd.read_csv(current_dir.parent / 'X_test.csv')
+y_test = pd.read_csv(current_dir.parent / 'y_test.csv')
+
+#print(X_test.head())
 # Load the trained model
 clf_loaded = joblib.load('trained_model.joblib')
 
@@ -26,11 +28,9 @@ class_report = classification_report(y_test, y_pred)
 
 # Print evaluation metrics
 print(f'Accuracy: {accuracy * 100:.2f}%')
-print('Confusion Matrix:')
-print(conf_matrix)
+#print('Confusion Matrix:')
+#print(conf_matrix)
 print('Classification Report:')
 print(class_report)
 
-corr_matrix = pd.concat([X, y], axis=1).corr()
-print(corr_matrix.iloc[0, 1:])  # Print correlation of the label with all features
 
