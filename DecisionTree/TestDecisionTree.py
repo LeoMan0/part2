@@ -11,8 +11,8 @@ current_dir = Path(__file__).resolve().parent
 #X_train_path = current_dir.parent / 'X_train.csv'
 #y_train_path = current_dir.parent / 'y_train.csv'
 
-X_test = pd.read_csv(current_dir.parent / 'X_test.csv')
-y_test = pd.read_csv(current_dir.parent / 'y_test.csv')
+X_test = pd.read_csv(current_dir.parent / 'X_train.csv')
+y_test = pd.read_csv(current_dir.parent / 'y_train.csv')
 
 #X_test = pd.read_csv(current_dir.parent / 'X_val.csv')
 #y_test = pd.read_csv(current_dir.parent / 'y_val.csv')

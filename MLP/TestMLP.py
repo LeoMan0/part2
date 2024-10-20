@@ -12,7 +12,8 @@ X_test = pd.read_csv(X_test_path)
 y_test = pd.read_csv(y_test_path)
 
 # Load the trained MLP model
-mlp_clf = joblib.load('1trained_mlp_model.joblib')
+mlp_clf = joblib.load('trained_mlp_model.joblib')
+
 # Use the model to make predictions on the test set
 y_pred = mlp_clf.predict(X_test)
 
