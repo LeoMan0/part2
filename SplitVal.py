@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.utils import shuffle
-
+from sklearn.model_selection import train_test_split
 # Read the CSV file into a pandas DataFrame
 data = pd.read_csv('preprocessed_data.csv')
 
@@ -41,12 +41,18 @@ for label in y.unique():
     y_label_temp = y_label_sorted.iloc[train_split_index:]
 
     # Now split the temporary set (30%) into validation (15%) and test (15%)
-    val_split_index = int(len(X_label_temp) * 0.50)  # Half of the temp set for validation, half for test
+   # val_split_index = int(len(X_label_temp) * 0.50)  # Half of the temp set for validation, half for test
 
-    X_label_val = X_label_temp.iloc[:val_split_index]
-    X_label_test = X_label_temp.iloc[val_split_index:]
-    y_label_val = y_label_temp.iloc[:val_split_index]
-    y_label_test = y_label_temp.iloc[val_split_index:]
+   # X_label_val = X_label_temp.iloc[:val_split_index]
+   # X_label_test = X_label_temp.iloc[val_split_index:]
+   # y_label_val = y_label_temp.iloc[:val_split_index]
+   # y_label_test = y_label_temp.iloc[val_split_index:]
+
+
+    X_label_val, X_label_test, y_label_val, y_label_test = train_test_split(
+    X_label_temp, y_label_temp, test_size=0.5, random_state=42  # Randomly split 50% for validation and 50% for test
+)
+    
 
     # Append the split data to the respective train, validation, and test sets
     X_train = pd.concat([X_train, X_label_train])

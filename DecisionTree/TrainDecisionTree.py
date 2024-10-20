@@ -41,7 +41,7 @@ param_grid = {
 clf = DecisionTreeClassifier()
 
 # Set up GridSearchCV to tune hyperparameters based on validation accuracy
-grid_search = GridSearchCV(estimator=clf, param_grid=param_grid, cv=3, scoring='accuracy', verbose=2)
+grid_search = GridSearchCV(estimator=clf, param_grid=param_grid, cv=3, scoring='accuracy', verbose=2, n_jobs=-1)
 
 # Fit the model using grid search
 grid_search.fit(X_train, y_train)
