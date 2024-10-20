@@ -41,7 +41,7 @@ for label in y.unique():
     y_label_temp = y_label_sorted.iloc[train_split_index:]
 
     # Now split the temporary set (30%) into validation (15%) and test (15%)
-    val_split_index = int(len(X_label_temp) * 0.5)  # Half of the temp set for validation, half for test
+    val_split_index = int(len(X_label_temp) * 0.50)  # Half of the temp set for validation, half for test
 
     X_label_val = X_label_temp.iloc[:val_split_index]
     X_label_test = X_label_temp.iloc[val_split_index:]
