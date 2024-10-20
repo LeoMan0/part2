@@ -7,9 +7,6 @@ from pathlib import Path
 
 current_dir = Path(__file__).resolve().parent
 
-# Build paths for the data files in the parent directory
-#X_train_path = current_dir.parent / 'X_train.csv'
-#y_train_path = current_dir.parent / 'y_train.csv'
 
 X_test = pd.read_csv(current_dir.parent / 'X_test.csv')
 y_test = pd.read_csv(current_dir.parent / 'y_test.csv')
@@ -17,8 +14,8 @@ y_test = pd.read_csv(current_dir.parent / 'y_test.csv')
 #X_test = pd.read_csv(current_dir.parent / 'X_val.csv')
 #y_test = pd.read_csv(current_dir.parent / 'y_val.csv')
 
-#X_test = pd.read_csv(current_dir.parent / 'X_train.csv')
-#y_test = pd.read_csv(current_dir.parent / 'y_train.csv')
+X_test = pd.read_csv(current_dir.parent / 'X_train.csv')
+y_test = pd.read_csv(current_dir.parent / 'y_train.csv')
 #print(X_test.head())
 # Load the trained model
 clf_loaded = joblib.load('rf_model.joblib')

@@ -8,24 +8,18 @@ import joblib
 # To ensure the project works for both Windows and Linux
 current_dir = Path(__file__).resolve().parent
 
-# Load the training and validation datasets
-X_train_path = current_dir.parent / 'X_train.csv'
-y_train_path = current_dir.parent / 'y_train.csv'
-X_val_path = current_dir.parent / 'X_val.csv'
-y_val_path = current_dir.parent / 'y_val.csv'
+X_train = pd.read_csv(current_dir.parent / 'X_train.csv')
+y_train = pd.read_csv(current_dir.parent / 'y_train.csv')
+X_val = pd.read_csv(current_dir.parent / 'X_val.csv')
+y_val = pd.read_csv(current_dir.parent / 'y_val.csv')
 
-X_train = pd.read_csv(X_train_path)
-y_train = pd.read_csv(y_train_path)
-X_val = pd.read_csv(X_val_path)
-y_val = pd.read_csv(y_val_path)
-
+#{'max_depth': 15, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 150}
 
 rf_clf = RandomForestClassifier(
-    n_estimators=50, 
-    max_depth=5, 
-    min_samples_split=20, 
-    min_samples_leaf=10, 
-    max_features='log2',  # Consider fewer features per split
+    n_estimators=150, 
+    max_depth=15, 
+    min_samples_leaf=1,
+    min_samples_split=2,
     class_weight='balanced', 
     random_state=42, 
     n_jobs=-1
