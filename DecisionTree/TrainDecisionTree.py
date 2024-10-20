@@ -9,16 +9,10 @@ from sklearn.metrics import accuracy_score
 # To ensure that the project works for both Windows and linux
 current_dir = Path(__file__).resolve().parent
 
-# Build paths for the data files in the parent directory
-X_train_path = current_dir.parent / 'X_train.csv'
-y_train_path = current_dir.parent / 'y_train.csv'
-X_val_path = current_dir.parent / 'X_val.csv'
-y_val_path = current_dir.parent / 'y_val.csv'
-
-X_train = pd.read_csv(X_train_path)
-y_train = pd.read_csv(y_train_path)
-X_val = pd.read_csv(X_val_path)
-y_val = pd.read_csv(y_val_path)
+X_train = pd.read_csv(current_dir.parent / 'X_train.csv')
+y_train = pd.read_csv(current_dir.parent / 'y_train.csv')
+X_val = pd.read_csv(current_dir.parent / 'X_val.csv')
+y_val = pd.read_csv(current_dir.parent / 'y_val.csv')
 
 #Best Hyperparameters: {'criterion': 'gini', 'max_depth': 15, 'min_samples_leaf': 4, 'min_samples_split': 10}
 # Define the hyperparameters grid to search over
@@ -30,10 +24,10 @@ y_val = pd.read_csv(y_val_path)
 #}
 #Best Hyperparameters: {'criterion': 'gini', 'max_depth': 12, 'min_samples_leaf': 3, 'min_samples_split': 9}
 param_grid = {
-    'max_depth': [12, 13],               # Try different depths
+    'max_depth': [5,6,7,8,9,12,13],               # Try different depths
     'min_samples_split': [2, 9, 10],            # Minimum number of samples required to split a node
-    'min_samples_leaf': [3, 4],              # Minimum number of samples required to be at a leaf node
-    'criterion': ['gini']            # Use Gini or Entropy as the split criterion
+    'min_samples_leaf': [3, 4]              # Minimum number of samples required to be at a leaf node
+
 }
 
 

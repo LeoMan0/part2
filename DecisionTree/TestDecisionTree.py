@@ -16,8 +16,7 @@ y_test = pd.read_csv(current_dir.parent / 'y_test.csv')
 
 #X_test = pd.read_csv(current_dir.parent / 'X_val.csv')
 #y_test = pd.read_csv(current_dir.parent / 'y_val.csv')
-#print(X_test.head())
-# Load the trained model
+
 clf_loaded = joblib.load('best_trained_model.joblib')
 
 # Use the loaded model to make predictions on the test set

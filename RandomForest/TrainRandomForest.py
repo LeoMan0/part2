@@ -8,24 +8,18 @@ import joblib
 # Ensure the project works for both Windows and Linux
 current_dir = Path(__file__).resolve().parent
 
-# Load the training and validation datasets
-X_train_path = current_dir.parent / 'X_train.csv'
-y_train_path = current_dir.parent / 'y_train.csv'
-X_val_path = current_dir.parent / 'X_val.csv'
-y_val_path = current_dir.parent / 'y_val.csv'
-
-X_train = pd.read_csv(X_train_path)
-y_train = pd.read_csv(y_train_path)
-X_val = pd.read_csv(X_val_path)
-y_val = pd.read_csv(y_val_path)
+X_train = pd.read_csv(current_dir.parent / 'X_train.csv')
+y_train = pd.read_csv(current_dir.parent / 'y_train.csv')
+X_val = pd.read_csv(current_dir.parent / 'X_val.csv')
+y_val = pd.read_csv(current_dir.parent / 'y_val.csv')
 #Best Hyperparameters: {'criterion': 'gini', 'max_depth': 15, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
 # Define a grid of hyperparameters to search over
 param_grid = {
-    'n_estimators': [100, 200],              # Number of trees
+    'n_estimators': [100, 150, 200],              # Number of trees
     'max_depth': [10, 15],               # Maximum depth of each tree
     'min_samples_split': [2, 5],         # Minimum samples to split a node
     'min_samples_leaf': [1, 2, 4],           # Minimum samples at a leaf node
-    'criterion': ['gini']         # Use Gini or Entropy criterion
+
 }
 
 # Initialize the RandomForestClassifier
@@ -39,9 +33,9 @@ rf_clf = RandomForestClassifier(
 grid_search = GridSearchCV(
     estimator=rf_clf, 
     param_grid=param_grid, 
-    cv=3,                   # 3-fold cross-validation
-    scoring='accuracy',      # Use accuracy as the evaluation metric
-    verbose=2                # Output progress
+    cv=3,
+    scoring='accuracy',
+    verbose=2
 )
 
 # Train the model using GridSearchCV on the training data

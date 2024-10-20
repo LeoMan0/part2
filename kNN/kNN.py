@@ -18,12 +18,11 @@ y_train = pd.read_csv(y_train_path)
 
 # Initialize the kNN model
 k = 250  # Choose the number of neighbors, can tune this parameter
-knn_clf = KNeighborsClassifier(n_neighbors=k)
+knn_clf = KNeighborsClassifier(n_neighbors=250)
 
-# Train the kNN model
 knn_clf.fit(X_train, y_train.values.ravel())
 
-# Save the trained model and the scaler
+# Save the trained mode
 joblib.dump(knn_clf, 'trained_knn_model.joblib')
 
 
